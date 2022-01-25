@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>보건복지부</title>
+    <!-- 메타포 -->
+    <meta name="title" content="보건복지부 웹사이트" comment="보건복지부 보다 나은 정부" />
+   	<meta name="keywords" content="보건복지부, 건강보험 보장성 강화, 치매국가책임제, 아동수당, 기초연금, 사회서비스 일자리"/>
+	<meta name="description" content="보건복지부, 건강보험 보장성 강화, 치매국가책임제, 아동수당, 기초연금, 사회서비스 일자리"/>
+    <!-- 오픈그래프 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="website">
+    <meta property="og:description" content="website">
+    <meta property="og:image" content="http://mohw.go.kr/images/react/homeimg.png">
+    <meta property="og:url" content="">
+    <!-- 파비콘 -->
+    <link rel="favicon" href="./source/favicon-16x16.png" comment="URL입력칸왼쪽의파비콘"/>
+    <link rel="shortcut icon" href="./source/favicon-16x16.png" comment="웹브라우저왼쪽상단의 아이콘"/>
+    <link rel="icon" href="./source/favicon-16x16.png" comment="즐겨찾기했을때의 웹사이트의 대표 아이콘" />
+    <!-- 필요한 라이브러리 -->
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+
+    <!-- 구글 애널리틱스 연결 : 방문자 통계 및 로그분석 -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGR1LF0H6B"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CGR1LF0H6B');
+    </script>
+    
+    <!-- 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <!-- 
+    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    -->
+    <!-- 사용자 외부 스타일 연결 -->
+    <link rel="stylesheet" href="/dev/project4/css/reset.css">
+    <link rel="stylesheet" href="/dev/project4/css/common.css">
+    <style>
+    .main_color1 { background-color: #1d4bb0;}
+    .main_color2 { background-color: #ef4c84;}
+    .base_color1 { background-color: #fff; }
+    .base_color2 { background-color: #202020; }
+
+    .vs { clear:both; width: 100%; position:relative; max-height:540px; overflow:hidden; }
+    .vs_pic_box { width:400%; overflow-x:hidden; }
+    .vs_pic_box:after { content:""; display:block; cleaR:both; }
+    .vs_pic_box li { float:left; width: 25%; }
+    .vs_pic_box li img { display:block; width: 100%; }
+    .btn_box1 li button.vs_btn { display:block; outline: 0; border:0; background-color: transparent; 
+    width: 50px; height: 75px; background-repeat: no-repeat; background-image: url("./source/visualArr.png"); 
+    position:absolute; top:42%; margin-top:-37px; z-index:20; cursor:pointer; }
+    .btn_box1 li button.vs_btn.prev { left:30px; background-position: left center;}
+    .btn_box1 li button.vs_btn.next { right:30px; background-position: right center;}
+    
+    .ico_box { clear:both; width: 100%; height: 80px; padding-bottom: 15px; background-color: rgb(236, 254, 255); padding-top: 15px; overflow:hidden; margin-top: 20px; border-bottom: #1d4bb0;}
+    .ico_box:after { content:""; clear:both; display:block; }
+    .ico_wrap { width: 1200px; margin:10px auto; }
+    .ico_wrap li { width: 200px; float:left; height: 80px; }
+    .ico_wrap li a { display:block; padding:10px 10px 10px 72px; background-repeat: no-repeat; background-position:10px center; line-height:20px; font-weight: bold; color:#666; }
+    .ico_wrap li.ico1 a { background-image: url("./source/icon1.PNG"); }
+    .ico_wrap li.ico2 a { background-image: url("./source/icon2.PNG"); }
+    .ico_wrap li.ico3 a { background-image: url("./source/icon3.PNG"); }
+    .ico_wrap li.ico4 a { background-image: url("./source/icon4.PNG"); }
+    .ico_wrap li.ico5 a { background-image: url("./source/icon5.PNG"); }
+    .ico_wrap li.ico6 a { background-image: url("./source/icon6.PNG"); }
+
+    .over_sl_box { clear:both; width: 113%; max-height:420px; overflow:hidden; margin-bottom: 20px; 
+    margin-top: 20px; position:relative; overflow:hidden;  margin-left: -13%; }
+    .over_sl_box:after { content:""; display:block; clear:both; }
+    .over_sl_box ul { clear:both; width:200%; height: 340px; overflow:hidden; }
+    .over_sl_box ul li { float:left; width:10%; margin-left:1.5%; margin-right:1.5%; }
+    .over_sl_box ul li a { display:block; }
+    .over_sl_box ul li a img { display:block; width: 100%; }
+    .over_btn_box { width:220px; height: 30px; position:relative; margin:20px auto;  }
+    .over_btn_box button { display:block; border:0; outline:0; width:14px; height:14px;  
+    border-radius:8px; background-color: #666; float:left; cursor:pointer; bottom:20px; z-index:20;
+    position:absolute; }
+    .over_btn_box button.item1 { left:0px; }
+    .over_btn_box button.item2 { left:20px; }
+    .over_btn_box button.item3 { left:40px; }
+    .over_btn_box button.item4 { left:60px; }
+    .over_btn_box button.item5 { left:80px; }
+    .over_btn_box button.item6 { left:100px; }
+    .over_btn_box button.item7 { left:120px; }
+    .over_btn_box button.item8 { left:140px; }
+    .over_btn_box button.item9 { left:160px; }
+    .over_btn_box button.item10 { left:180px; }
+    .over_btn_box button.act { background-color: deeppink; }
+
+    .contact_box { clear:both; width: 100%; height: 240px; overflow:hidden;  }
+    .contact_box:after { content:""; display:block; clear:both; }
+    .contact_wrap { width:1200px; margin:30px auto; height:200px; }
+    .noti_box { width: 400px; float:left; margin-right: 50px; }
+    .ra_item { display:none; }
+    .noti_wrap { clear:both; }
+    .noti_wrap .noti { display:none; width: 400px; height: 200px; }
+    #ra1:checked ~ .noti_wrap .noti.item1 { display:block; }
+    #ra2:checked ~ .noti_wrap .noti.item2 { display:block; }
+
+    .noti_lb_box { clear:both; height: 48px; }
+    .noti_lb_box li { float:left; width: 100px; text-align: center; height: 48px; line-height: 48px;
+     cursor: pointer; }
+    .noti_lb_box li.more_item { float:right;  font-size:14px; font-weight: bold;  }
+    .noti_lb_box li label { color:#000; font-weight: normal; cursor: pointer; }
+    #ra1:checked ~ .noti_lb_box li.item1 label { color:red; font-weight:bold; }
+    #ra2:checked ~ .noti_lb_box li.item2 label { color:red; font-weight:bold; }
+
+    .news_box { width: 400px; float:left; margin-right: 50px; }
+    .news_wrap { clear:both; }
+    .news_wrap .news { display:none; width: 400px; height:200px; }
+    #ra3:checked ~ .news_wrap .news.item1 { display:block; }
+    #ra4:checked ~ .news_wrap .news.item2 { display:block; }
+
+    .news_lb_box { clear:both; height: 48px; }
+    .news_lb_box li { float:left; width: 100px; text-align: center; height: 48px; line-height: 48px;
+     cursor: pointer; }
+    .news_lb_box li.more_item { float:right; font-size:14px; font-weight: bold; }
+    .news_lb_box li label { color:#000; font-weight: normal;  cursor: pointer; }
+    #ra3:checked ~ .news_lb_box li.item1 label { color:red; font-weight:bold; }
+    #ra4:checked ~ .news_lb_box li.item2 label { color:red; font-weight:bold; }
+    .noti_wrap, .news_wrap { border-top:2px solid #333; }
+
+    .tel_box { width: 300px; height: 200px; float:right; background-color:#595b61;
+    background-image: url(""); background-repeat: no-repeat; background-position:220px bottom; }
+    .tel_wrap { width: 186px; padding: 20px 20px; }
+    .tel_wrap li { line-height:36px; background-repeat: no-repeat; background-position:0px center; }
+    .tel_wrap li a { display:block; color:#fff; font-weight: bold; font-size:14px; padding-left: 32px; }
+    .tel_wrap li.map1 { background-image: url("./source/info-loca.png"); }
+    .tel_wrap li.map2 { background-image: url("./source/gnb_icon3_on.png"); }
+    .tel_wrap li.map3 { background-image: url("./source/gnb_icon2_on.png"); }
+    .board_tb { display:table; border-collapse: collapse; width:98%; margin: 10px auto; }
+    .board_tb tr { display:table-row; }
+    .board_tb td { display:table-cell; font-size:14px; line-height: 24px; }
+    .board_tb .board_tit { width: 260px; }
+    .board_tb .board_tit a { display:block; width: 250px; color:#666; font-weight:bold; 
+    padding-right: 10px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .board_tb .board_date { text-align:center; }
+    .board_tb td .ico_img { display:none; }
+    </style>
+    <style>
+    /* sub_common.css */
+    .con_wrap { clear:both; width: 100%; min-height:100vh; }
+    .con_wrap:after { content:""; display:block; clear:both; } /* clear-fix */
+    .page { clear:both; width: 100%; min-height:100vh; }
+    .page_tit { text-align: center; padding-top: 24px; line-height: 3; font-size:32px;; color:navy; }
+    .bread_box { clear:both; width: 100%; height: 70px; border-bottom:2px solid #f1f1f1; }
+    .bread_lst { width: 1200px; margin: 0 auto; height: 70px; }
+    .bread_lst li { float:left; height: 48px; line-height: 48px; margin-top:9px; 
+    margin-right: 24px; background-color: #fff; padding-left: 14px; padding-right: 14px; border:1px solid #333; position:relative; color:#fff; background-color:#333; }
+    .bread_lst li a { color:#fff; }
+    .bread_lst li select { border:0; outline:0; background-color: #333; color:#fff; }
+    .bread_lst li select option { border:0; outline:0; }
+    .bread_lst li.cate3 { width: 120px; border:0; box-sizing:border-box;  }
+
+    #sel3 { position:absolute; width: 120px; height: 46px; overflow:hidden; 
+    top: 0; left: 0; z-index:30; border:1px solid #333; background-color: #333;
+color:#fff; }
+    #sel3.on { height: 200px; }
+    #sel3 dl { width: 120px; }
+    #sel3 dt, #sel3 dd { line-height: 40px; height: 40px; padding-left: 14px; 
+    width: 120px; } 
+
+    ::marker {  color:#fff; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <script>
+    $(document).ready(function(){
+        //URL을 전부 String으로 처리하는 방법
+        var loc = location.href;        //sub1.html?page=1
+        var page = parseInt(loc.substring(loc.indexOf("=")+1,loc.length)) - 1;  //0
+
+        //URL에서 QueryString(getParameter)로 처리하는 방법
+        /* var queryStr = new URL(location.href); //sub1.html?page=1&cate=2
+        queryStr = queryStr.searchParams;   //page=1&cate=2
+        queryStr = queryStr.get('page');    //1
+        var page = parseInt(queryStr) - 1;  //0
+        */
+
+        $(".page").css("display", "none");
+        $(".page").eq(page).css("display", "block");
+    });    
+    </script>
+    <header class="hd">
+        <div class="hd_wrap">
+            <a href="/dev/project4/index.html" class="logo">
+                <img src="/dev/project4/source/logo.png" alt="로고이미지"  style="margin-top: -13px;">
+            </a>
+            <div class="search_wrap">
+                <form action="" method="">
+                    <div class="search_fr">
+                        <input type="text" id="keyword" name="keyword" placeholder="검색어 입력">
+                        <input type="submit" class="search_btn" value="검색">
+                    </div>
+                </form>
+            </div>
+            <div class="lang_link">
+                <a href="http://www.mohw.go.kr/eng/index.jsp" class="en_ico">English</a>
+                <a href="http://www.mohw.go.kr/kids/index.jsp" class="ch_ico" style="word-spacing:15px; font-size: 12px;">Children</a>
+            </div>
+        </div>
+        <nav class="gnb">
+            <div class="gnb_group nav1">
+                <ul class="l_gnb">
+                    <li class="item1">
+                        <a href="" class="dp1">정보공개</a>
+                        <ul class="sub">
+                            <li>
+                                <a href="" class="dp2">정보공개</a>
+                                <dl class="dep3">
+                                    <dt>정보공개</dt>
+                                    <dd><a href="" class="dp3">정보공개제도안내</a></dd>
+                                    <dd><a href="" class="dp3">정보공개청구</a></dd>
+                                    <dd><a href="" class="dp3">정보목록</a></dd>
+                                    <dd><a href="" class="dp3">비공개 대상정보 세부기준</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">공공데이터개방</a>
+                                <dl class="dep3">
+                                    <dt>공공데이터개방</dt>
+                                    <dd><a href="" class="dp3">보건복지 공공데이터</a></dd>
+                                    <dd><a href="" class="dp3">공공데이터 제공신청</a></dd>
+                                    <dd><a href="" class="dp3">이용안내</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">공공누리</a>
+                                <dl class="dep3">
+                                    <dt>공공누리</dt>
+                                    <dd><a href="" class="dp3">공공누리 제도안내</a></dd>
+                                    <dd><a href="" class="dp3">공공누리 유형안내</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">정보보호</a>
+                                <dl class="dep3">
+                                    <dt>정보보호</dt>
+                                    <dd><a href="" class="dp3">개인정보관리현황</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">정책실명제</a>
+                                <dl class="dep3">
+                                    <dt>정책실명제</dt>
+                                    <dd><a href="" class="dp3">국민신청실명제</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item2">
+                        <a href="" class="dp1">참여</a>
+                        <ul class="sub">
+                            <li>
+                                <a href="" class="dp2">적극행정</a>
+                                <dl class="dep3">
+                                    <dt>적극행정</dt>
+                                    <dd><a href="" class="dp3">제도소개</a></dd>
+                                    <dd><a href="" class="dp3">우수사례</a></dd>
+                                    <dd><a href="" class="dp3">우수공무원·정책 국민추천제</a></dd>
+                                    <dd><a href="" class="dp3">소득행정 신고</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">규제개혁</a>
+                                <dl class="dep3">
+                                    <dt>규제개혁</dt>
+                                    <dd><a href="" class="dp3">규제개혁소개</a></dd>
+                                    <dd><a href="" class="dp3">규제개혁과제</a></dd>
+                                    <dd><a href="" class="dp3">자료실</a></dd>
+                                    <dd><a href="" class="dp3">규제개혁 신문고</a></dd>
+                                    <dd><a href="" class="dp3">규제입증 요청</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">나눔문화</a>
+                                <dl class="dep3">
+                                    <dt>나눔문화</dt>
+                                    <dd><a href="" class="dp3">대한민국 나눔국민대상</a></dd>
+                                    <dd><a href="" class="dp3">대한민국 나눔국민대상 국민공모</a></dd>
+                                    <dd><a href="" class="dp3">홍보영상</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">알림</a>
+                                <dl class="dep3">
+                                    <dt>협동조합 경영공시</dt>
+                                    <dd><a href="" class="dp3">경영공시 조회</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item3">
+                        <a href="" class="dp1">정보</a>
+                        <ul class="sub">
+                            <li>
+                                <a href="" class="dp2">법령</a>
+                                <dl class="dep3">
+                                    <dt>법령안내</dt>
+                                    <dd><a href="" class="dp3">법률/시행령/시행규칙</a></dd>
+                                    <dd><a href="" class="dp3">훈령/예규/고시/지침</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">홍보자료</a>
+                                <dl class="dep3">
+                                    <dt>홍보자료</dt>
+                                    <dd><a href="" class="dp3">#덕분에 캠페인</a></dd>
+                                    <dd><a href="" class="dp3">카드뉴스</a></dd>
+                                    <dd><a href="" class="dp3">간행물</a></dd>
+                                </dl>
+                            </li>
+                            
+                            
+                            <li>
+                                <a href="" class="dp2">주요계획</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item4">
+                        <a href="" class="dp1">정책</a>
+                        <ul class="sub">
+                            <li class="menu_thumb1">
+                                <a href="http://www.mohw.go.kr/react/policy/policy_bunissPlan_ls.jsp?PAR_MENU_ID=06&MENU_ID=0650" class="menu_thumb_link">업무계획</a>
+                            </li>
+                            <li class="menu_thumb2">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=062901" class="menu_thumb_link">보건의료</a>
+                            </li>
+                            <li class="menu_thumb3">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=063001" class="menu_thumb_link">공공보건</a>
+                            </li>
+                            <li class="menu_thumb4">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=063101" class="menu_thumb_link">한의약</a>
+                            </li>
+                            <li class="menu_thumb5">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=063201" class="menu_thumb_link">건강보험</a>
+                            </li>
+                            <li class="menu_thumb6">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=063301" class="menu_thumb_link">건강</a>
+                            </li>
+                            <li class="menu_thumb7">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=063401" class="menu_thumb_link">보건산업</a>
+                            </li>
+                            <li class="menu_thumb8">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=063501" class="menu_thumb_link">복지</a>
+                            </li>
+                            <li class="menu_thumb9">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=063601" class="menu_thumb_link">사회서비스</a>
+                            </li>
+                            <li class="menu_thumb10">
+                                <a href="http://www.mohw.go.kr/react/policy/index.jsp?PAR_MENU_ID=06&MENU_ID=063701" class="menu_thumb_link">장애인</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>  
+            <div class="gnb_group nav2">
+                <ul class="r_gnb">
+                    <li class="item1">
+                        <a href="" class="dp1">소개</a>
+                        <ul class="sub">
+                            <li>
+                                <a href="" class="dp2">보건복지부소개</a>
+                                <dl class="dep3">
+                                    <dt>보건복지부소개</dt>
+                                    <dd><a href="" class="dp3">비전/임무</a></dd>
+                                    <dd><a href="" class="dp3">연혁</a></dd>
+                                    <dd><a href="" class="dp3">정부상징</a></dd>
+                                    <dd><a href="" class="dp3">조직</a></dd>
+                                    <dd><a href="" class="dp3">장관소개</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">조직안내</a>
+                                <dl class="dep3">
+                                    <dt>조직안내</dt>
+                                    <dd><a href="" class="dp3">임원현황</a></dd>
+                                    <dd><a href="" class="dp3">조직도</a></dd>
+                                    <dd><a href="" class="dp3">담당업무별 연락처</a></dd>
+                                    <dd><a href="" class="dp3">지역본부 홈페이지</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="" class="dp2">오시는 길</a>
+                                <dl class="dep3">
+                                    <dt>오시는 길</dt>
+                                    <dd><a href="" class="dp3">보건복지부 세종청사</a></dd>
+                                    <dd><a href="" class="dp3">보건복지부 별관</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item2">
+                        <a href="" class="dp1">이용안내</a>
+                        <ul class="sub">
+                            <li>
+                                <a href="" class="dp2">이용안내</a>
+                                <dl class="dep3">
+                                    <dt>이용안내</dt>
+                                    <dd><a href="http://www.mohw.go.kr/react/cs/scs0101mn.jsp?PAR_MENU_ID=07&MENU_ID=0701" class="dp3">홈페이지이용안내</a></dd>
+                                    <dd><a href="http://www.mohw.go.kr/react/cs/scs0101mn.jsp?PAR_MENU_ID=07&MENU_ID=0714" class="dp3">장애인이용안내</a></dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item3">
+                        <a href="" class="dp1">상담센터</a>
+                        <ul class="sub">
+                            <li>
+                                <a href="" class="dp2">보건복지부</a>
+                                <dl class="dep3">
+                                    <dt>보건복지부상담센터</dt>
+                                    <dd><a href="https://www.129.go.kr/counsel/counsel01.jsp" class="dp3">상담안내</a></dd>
+                                    <dd><a href="https://www.129.go.kr/news/news01.jsp" class="dp3">알림마당</a></dd>
+                                    <dd><a href="https://www.129.go.kr/info/info01.jsp" class="dp3">정보마당</a></dd>
+                                    <dd><a href="https://www.129.go.kr/faq/faq01.jsp" class="dp3">자주하는 질문</a></dd>
+                                    <dd><a href="https://www.129.go.kr/intro/intro01.jsp" class="dp3">보건복지상담센터 소개</a></dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <a href="http://www.mohw.go.kr/react/cs/scs0101mn.jsp?PAR_MENU_ID=07&MENU_ID=070208" class="dp2">개인정보처리방침</a>
+                            </li>
+                            <li>
+                                <a href="http://www.mohw.go.kr/react/cs/scs0101mn.jsp?PAR_MENU_ID=07&MENU_ID=0716" class="dp2">영상정보처리기기 운영방침</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item4">
+                        <a href="" class="dp1">사이트맵</a>
+                    </li>
+                </ul>
+            </div>      
+        </nav>  
+    </header>
+    <section class="content">
+        <div class="bread_box">
+            <ul class="bread_lst">
+                <li class="main_cate">
+                    <a href="/dev/project4/index.html" class="home_ico">HOME</a>
+                </li>
+                <li class="cate1">
+                    <select name="sel1" id="sel1">
+                        <option value="sub1.html">표준</option>
+                        <option value="sub2.html">인증</option>
+                        <option value="sub3.html">교육</option>
+                        <option value="sub4.html">품질.서비스</option>
+                        <option value="sub5.html">KSA소개</option>
+                    </select>
+                </li>
+                <li class="cate2">
+                    <details name="sel2" id="sel2">
+                        <summary>교육안내</summary>
+                        <ul>
+                            <li><a href="sub1.html?page=2">표준연구</a></li>
+                            <li><a href="sub1.html?page=3">표준진흥.연구</a></li>
+                            <li><a href="sub1.html?page=4">표준보급</a></li>
+                            <li><a href="sub1.html?page=5">표준개발</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li class="cate3">
+                    <div id="sel3">
+                        <dl class="sel_lst">
+                            <dt>표준</dt>
+                            <dd><a href="sub1.html?page=11">링크1</a></dd>
+                            <dd><a href="sub1.html?page=12">링크2</a></dd>
+                            <dd><a href="sub1.html?page=13">링크3</a></dd>
+                            <dd><a href="sub1.html?page=14">링크4</a></dd>
+                        </dl>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <script>
+        $(function(){
+            $("#sel1").change(function(){
+                location.href = $(this).val();
+            });
+            var sel_sw = true;
+            $(".bread_lst li.cate3").click(function(){
+                if(sel_sw) {
+                    $("#sel3").addClass("on");
+                    sel_sw = false;
+                } else {
+                    $("#sel3").removeClass("on");
+                    sel_sw = true;
+                }    
+            });
+        });    
+        </script>
+        <figure class="vs">
+
+        </figure>
+        <div class="con_wrap">
+            <section class="page" id="page1">
+                <h2 class="page_tit">페이지 제목1</h2>
+                <div class="page_wrap"></div>
+            </section>
+            <section class="page" id="page2">
+                <h2 class="page_tit">페이지 제목2</h2>
+                <div class="page_wrap"></div>
+            </section>
+            <section class="page" id="page3">
+                <h2 class="page_tit">페이지 제목3</h2>
+                <div class="page_wrap"></div>
+            </section>
+            <section class="page" id="page4">
+                <h2 class="page_tit">페이지 제목4</h2>
+                <div class="page_wrap"></div>
+            </section>
+            <section class="page" id="page5">
+                <h2 class="page_tit">페이지 제목5</h2>
+                <div class="page_wrap"></div>
+            </section>
+        </div>
+    </section>
+    <footer class="ft">
+        <div class="ft_wrap">
+            <div class="ft_box">
+                <nav class="sns_link">
+                    <ul>
+                        <li class="item1"><a href="https://www.facebook.com/mohwpr"></a></li>
+                        <li class="item2"><a href="https://www.youtube.com/user/mohwpr"></a></li>
+                        <li class="item3"><a href="https://blog.naver.com/mohw2016"></a></li>
+                        <li class="item4"><a href="https://www.instagram.com/mohw_kr/"></a></li>
+                        <li class="item5"><a href="https://tv.naver.com/mohw"></a></li>
+                    </ul>
+                </nav>
+                <nav class="relation_link">
+                    <a href="" class="hot_link">관련기관 홈페이지</a>
+                    <div class="rel_sel_box">
+                        <select name="rel_sel" id="rel_sel">
+                            <option value="site1">국립암센터</option>
+                            <option value="site2">(재)한국장애인개발원</option>
+                            <option value="site3">대한적십자사</option>
+                            <option value="site4">(재)한국보육진흥원</option>
+                            <option value="site5">한국보건의료인국가시험원</option>
+                        </select>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="ft_wrap">
+            <div class="ft_box ft_logo">
+                <nav class="ft_link">
+                    <ul>
+                        <li><a href="https://www.129.go.kr/">보건복지상담센터</a></li>
+                        <li><a href="https://www.gov.kr/yearend_main.html">정부24</a></li>
+                        <li><a href="https://www.kohi.or.kr/index.do">한국보건복지인력개발원</a></li>
+                        <li><a href="http://www.ssis.or.kr/index.do">한국사회보장정보원</a></li>
+                        <li><a href="index.go.kr/main.do">나라지표</a></li>
+                        <li><a href="https://www.easylaw.go.kr/CSP/Main.laf">생활법령정보</a></li>
+                    </ul>
+                </nav>
+                <p class="copyright">(30113) 세종특별자치시 도움4로 13 보건복지부 (정부세종청사 10동) <br>안내전화 : 보건복지상담센터 129 / 당직실 : 044-202-2117 / FAX : 044-202-3910
+                    <br>COPYRIGHT ⓒ By MOHW. All rights Reserved</p>
+                <ul class="wa_group">
+                    <li class="item1">인적자원개발우수기관</li>
+                </ul>    
+            </div>
+        </div>
+    </footer>   
+</body>
+</html>
