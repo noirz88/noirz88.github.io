@@ -14,14 +14,14 @@ a { text-decoration: none; }
 #keyword { display:block; height:38px; line-height:38px; width: 308px; padding-left: 10px; 
 border:1px solid #000; border-right:0; }
 .search_btn { display:block; width:50px; height:40px; text-indent:-99999px; background-color:transparent; 
-outline:0; border:0; background-position:center center; background-image: url("/dev/project4/source/sch-img.jpg"); 
+outline:0; border:0; background-position:center center; background-image: url("../source/sch-img.jpg"); 
 position:absolute; right:0; top:0;  }
 .lang_link { float:right; margin-top:14px; }
 .lang_link a { display:block; width: 128px; height: 42px; float:left; margin-left: 10px; 
     background-repeat: no-repeat; background-position:10px center; line-height:42px; text-align:right; 
 padding-right:20px; font-size:14px; color:#333; box-sizing: border-box; font-weight: bold; }
-.lang_link a.en_ico { background-image: url("/dev/project4/source/eng.jpg"); }
-.lang_link a.ch_ico { background-image: url("/dev/project4/source/kid2.PNG");}
+.lang_link a.en_ico { background-image: url("../source/eng.jpg"); }
+.lang_link a.ch_ico { background-image: url("../source/kid2.PNG");}
 .gnb { clear:both; height: 42px; padding-top: 18px; position:relative; }
 .gnb .gnb_group { height:42px; width: 50%; }
 .gnb .gnb_group.nav1 { float:left; background-color: #6f7175; }
@@ -80,11 +80,11 @@ font-size:18px; padding-right: 28px; padding-left:36px; max-width:120px; }
 .sns_link li { float:left; margin-right:40px; }
 .sns_link li a { display:block; width: 55px; height: 55px; background-repeat: no-repeat; 
 background-position:center center; }
-.sns_link li.item1 a { background-image: url("/dev/project4/source/facebook.png");}
-.sns_link li.item2 a { background-image: url("/dev/project4/source/utube.png");}
-.sns_link li.item3 a { background-image: url("/dev/project4/source/blog.png");}
-.sns_link li.item4 a { background-image: url("/dev/project4/source/instar.png");}
-.sns_link li.item5 a { background-image: url("/dev/project4/source/naverTv.png"); }
+.sns_link li.item1 a { background-image: url("../source/facebook.png");}
+.sns_link li.item2 a { background-image: url("../source/utube.png");}
+.sns_link li.item3 a { background-image: url("../source/blog.png");}
+.sns_link li.item4 a { background-image: url("../source/instar.png");}
+.sns_link li.item5 a { background-image: url("../source/naverTv.png"); }
 .relation_link { float:right; margin-top: 20px; }
 .relation_link .hot_link { display:block; float:left; width:150px; height: 40px; background-color:#ef4c84; 
 color:#fff; font-weight: bold; line-height: 40px; padding-left: 40px; background-repeat: no-repeat; 
@@ -104,5 +104,5 @@ background-image: url("./data/f-logo.png"); padding-left:140px; position:relativ
 .wa_group {position:absolute; right:0; top:30px; }
 .wa_group li { float:left; background-repeat: no-repeat; background-position:left top;}
 .wa_group li.item1 { width:180px; height: 46px; padding-left:54px; line-height: 46px; 
-background-image: url("/dev/project4/source/mark_wa.png"); font-weight: bold; font-size:14px; }
-.wa_group li.item2 { width: 63px; height: 46px; line-height: 46px; background-image: url("/dev/project4/source/mark_wa.png");}
+background-image: url("../source/mark_wa.png"); font-weight: bold; font-size:14px; }
+.wa_group li.item2 { width: 63px; height: 46px; line-height: 46px; background-image: url("../source/mark_wa.png");}
