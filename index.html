@@ -424,33 +424,34 @@
             </ul> -->
         </figure>
         <script>
-        $(function(){
-            var vstar = $(".vs_pic_box"); 
-            var vswd = parseInt(vstar.width() * 0.25 * -1);
-            var vs_ani1 = function(){
-                vstar.not(":animated").animate({"margin-left":vswd+"px"}, 600, function(){
-                    vstar.find("li").eq(0).appendTo($(vstar));
-                    vstar.css("margin-left", "0px");
+            $(function(){
+                var vstar = $(".vs_pic_box"); 
+                var vswd = parseInt(vstar.width() * 0.25 * -1);
+                var vs_ani1 = function(){
+                    vstar.not(":animated").animate({"margin-left":vswd+"px"}, 600, function(){
+                        vstar.find("li").eq(0).appendTo($(vstar));
+                        vstar.css("margin-left", "0px");
+                    });
+                }
+                var vs_ani2 = function(){
+                    vstar.find("li").eq(3).prependTo($(vstar));
+                    vstar.css("margin-left", "-100%");
+                    vstar.not(":animated").animate({"margin-left":"0px"}, 600);
+                }
+                var intvs = setInterval(function() { vs_ani1(); }, 4000);
+                $(".vs .btn_box1 li .prev").click(function(){
+                    clearInterval(intvs);
+                    vs_ani2();
+                    intvs = setInterval(function() { vs_ani1(); }, 4000);
                 });
-            }
-            var vs_ani2 = function(){
-                vstar.find("li").eq(3).prependTo($(vstar));
-                vstar.css("margin-left", "-100%");
-                vstar.not(":animated").animate({"margin-left":"0px"}, 600);
-            }
-            var intvs = setInterval(function() { vs_ani1(); }, 4000);
-            $(".vs .btn_box1 li .prev").click(function(){
-                clearInterval(intvs);
-                vs_ani2();
-                intvs = setInterval(function() { vs_ani1(); }, 4000);
-            });
-            $(".vs .btn_box1 li .next").click(function(){
-                clearInterval(intvs);
-                vs_ani1();
-                intvs = setInterval(function() { vs_ani1(); }, 4000);
-            });
-        });    
-        </script>
+                $(".vs .btn_box1 li .next").click(function(){
+                    clearInterval(intvs);
+                    vs_ani1();
+                    intvs = setInterval(function() { vs_ani1(); }, 4000);
+                });
+            });    
+            </script>
+        
         <div class="sponge" style="text-align: center; margin-top: 20px;">
             <a href="http://library.mohw.go.kr/">
             <img src="./source/sponge-logo.png" alt="보건복지부 자료실 로고 이미지">
@@ -511,10 +512,10 @@
             </ul>
             <!-- <div class="over_btn_box"><button class="item1 act"></button><button class="item2"></button><button class="item3"></button><button class="item4"></button><button class="item5"></button><button class="item6"></button><button class="item7"></button><button class="item8"></button><button class="item9"></button><button class="item10"></button></div> -->
         </div>
-        <!-- * 카카오맵 - 지도퍼가기 -->
         <!-- 1. 지도 노드 -->
-        <div id="daumRoughmapContainer1642574881673" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-
+        <div align="center">
+        <div id="daumRoughmapContainer1643172133224" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+        </div>
         <!--
             2. 설치 스크립트
             * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
@@ -524,42 +525,41 @@
         <!-- 3. 실행 스크립트 -->
         <script charset="UTF-8">
             new daum.roughmap.Lander({
-                "timestamp" : "1642574881673",
-                "key" : "28utr",
-                "mapWidth" : "1140",
+                "timestamp" : "1643172133224",
+                "key" : "28xev",
+                "mapWidth" : "640",
                 "mapHeight" : "360"
             }).render();
         </script>
         </div>
-
         <script>
-        $(function(){
-            var tar = $(".over_sl_box ul"); 
-            var wd = parseInt(tar.width() * 0.13 * -1);
-            var ani1 = function(){
-                tar.not(":animated").animate({"margin-left":wd+"px"}, 400, function(){
-                    $(".over_btn_box button").removeClass("act");
-                    $(".over_btn_box button").eq(0).appendTo($(".over_btn_box"));
-                    $(".over_btn_box button").eq(0).addClass("act");
-                    tar.find("li").eq(0).appendTo($(tar));
-                    tar.css("margin-left", "0px");
-                });
-            }
-            var intv = setInterval(function() { ani1(); }, 3000);
-            $(".over_btn_box button").click(function(){
-                var btn = $(this).index();
-                clearInterval(intv);
-                $(".over_btn_box button").removeClass("act");
-                $(".over_btn_box button").eq(btn).addClass("act");
-                for(var i=0;i<btn-1;i++){
-                    tar.find("li").eq(0).appendTo($(tar));
-                    $(".over_btn_box button").eq(0).appendTo($(".over_btn_box"));
+            $(function(){
+                var tar = $(".over_sl_box ul"); 
+                var wd = parseInt(tar.width() * 0.13 * -1);
+                var ani1 = function(){
+                    tar.not(":animated").animate({"margin-left":wd+"px"}, 400, function(){
+                        $(".over_btn_box button").removeClass("act");
+                        $(".over_btn_box button").eq(0).appendTo($(".over_btn_box"));
+                        $(".over_btn_box button").eq(0).addClass("act");
+                        tar.find("li").eq(0).appendTo($(tar));
+                        tar.css("margin-left", "0px");
+                    });
                 }
-                ani1();
-                intv = setInterval(function() { ani1(); }, 3000);
-            });
-        });    
-        </script>
+                var intv = setInterval(function() { ani1(); }, 3000);
+                $(".over_btn_box button").click(function(){
+                    var btn = $(this).index();
+                    clearInterval(intv);
+                    $(".over_btn_box button").removeClass("act");
+                    $(".over_btn_box button").eq(btn).addClass("act");
+                    for(var i=0;i<btn-1;i++){
+                        tar.find("li").eq(0).appendTo($(tar));
+                        $(".over_btn_box button").eq(0).appendTo($(".over_btn_box"));
+                    }
+                    ani1();
+                    intv = setInterval(function() { ani1(); }, 3000);
+                });
+            });    
+            </script>       
         <div class="contact_box">
             <div class="contact_wrap" >
                 <div class="noti_box">
